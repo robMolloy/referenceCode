@@ -6,7 +6,7 @@ function getDatarowFromMyForm(){
         email: document.getElementById('empEmail').value
     };
     
-    return datarow.id=='' ? {} : datarow;
+    return datarow.id=='' ? undefined : datarow;
 }
 
 function resetMyForm(){
