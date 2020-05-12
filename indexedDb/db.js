@@ -19,6 +19,7 @@ const tableNames = ['employees','customers'];
 //~ function called on page load (Ref: tables = stores, see naming convention)
 //~ if the dbName does not exist a new db will be set up with the above tables
 //~ if the dbVersion is greater than the current version, the above tables will be assigned to the existing db
+//~ 
 function initDb(){
     idb.open(dbName, dbVersion).onupgradeneeded = event => {
         console.log('updating DB');
