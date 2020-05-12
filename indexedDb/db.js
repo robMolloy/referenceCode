@@ -31,6 +31,7 @@ function initDb(){
     }
 }
 
+
 //~ function adds a datarow to the table passed in argument
 function add(tableName){
     let datarow = getDatarowFromMyForm();
@@ -52,6 +53,7 @@ function add(tableName){
         }
     }
 }
+
 
 //~ function updates a datarow to the table passed in argument
 function update(tableName){
@@ -104,6 +106,7 @@ function read(tableName){
 
 //~ function reads all datarows from the table passed as argument
 function readAll(tableName) {
+    let datarows = [];
     //~ open an idb connection
     idb.open(dbName, dbVersion).onsuccess = dbEvent => {
         //~ request to iterate over table
@@ -111,11 +114,10 @@ function readAll(tableName) {
         
         //~ if iterateRequest succesful...
         iterateRequest.onsuccess = iterateEvent => {
-            let datarows = [];
             let cursor = iterateEvent.target.result;
-            
             //~ check if cursor is currently iterating on a datarow - this will loop through iterations
             if(cursor) {
+                console.log(cursor.value);
                 //~ if on datarow, add datarow to datarows array and move to cursor to next datarow
                 datarows.push(cursor.value);
                 cursor.continue();

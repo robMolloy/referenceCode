@@ -104,6 +104,7 @@ function read(tableName){
 
 //~ function reads all datarows from the table passed as argument
 function readAll(tableName) {
+    let datarows = [];
     //~ open an indexedDB connection
     indexedDB.open(dbName).onsuccess = dbEvent => {
         //~ request to iterate over table
@@ -111,7 +112,6 @@ function readAll(tableName) {
         
         //~ if iterateRequest succesful...
         iterateRequest.onsuccess = iterateEvent => {
-            let datarows = [];
             let cursor = iterateEvent.target.result;
             
             //~ check if cursor is currently iterating on a datarow - this will loop through iterations
@@ -176,41 +176,4 @@ function removeWithInfo(tableName){
             }
         }
     }
-}
-
-function openIndexedDB(){
-    let indexedDBRequest = indexedDB.open(dbName);
-    return new Promise((resolve, reject) => {
-        indexedDBRequest.onsuccess = dbEvent => {resolve(dbEvent.target.result);}
-		indexedDBRequest.onerror = () => {reject(Error("IndexedDb request error"));}
-    });
-}
-
-async function getWithPromise(tableName,id=""){
-    //~ let datarow = getDatarowFromMyForm();
-    //~ if(datarow===undefined){document.querySelector('main').innerHTML = 'Datarow does not have an ID';return;}
-    
-    let idb = await openIndexedDB();
-    
-    //~ return new Promise((resolve, reject) => {
-    //~ });
-}
-
-
-async function getAllWithPromise(tableName){
-    let idb = await openIndexedDB();
-    let iterateRequest = idb.transaction([tableName]).objectStore(tableName).openCursor()
-
-    return new Promise((resolve, reject) => {
-        iterateRequest.onsuccess = iterateEvent => {
-            let datarows = [];
-            let cursor = iterateEvent.target.result;
-            
-            if(cursor) {
-                datarows.push(cursor.value);
-                cursor.continue();
-            } 
-            else {resolve(datarows);}
-        }
-    });
 }

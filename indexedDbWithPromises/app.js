@@ -18,5 +18,10 @@ function resetMyForm(){
 
 function resetMain(){
     document.querySelector('main').innerHTML = '';
-    
+}
+
+function showInMain(msg){
+    `
+        ${document.querySelector('main').innerHTML = typeof(msg)=='string' ? msg : JSON.stringify(msg,null,2)}
+    `;
 }
