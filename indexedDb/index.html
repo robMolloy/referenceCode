@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8" />
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="db.js"></script>
+        <style>
+            body > div {
+                margin-bottom:20px;
+                border-bottom:2px solid blue;
+            }
+        </style>
+    </head>
+    <body onload="initDb();">
+        <div id="myform">
+            <div><input id="empId" placeholder="Id"></div>
+            <div><input id="empName" placeholder="Name"></div>
+            <div><input id="empAge" placeholder="Age"></div>
+            <div><input id="empEmail" placeholder="Email"></div>
+                
+            <div class="buttons">
+                <button onclick="add('employees');">Add</button>
+                <button onclick="read('employees');">Read</button>
+                <button onclick="readAll('employees');">Read all</button>
+                <button onclick="remove('employees');">Delete</button>
+                <button onclick="removeWithInfo('employees');">DeleteWithInfo</button>
+                <button onclick="resetMyForm();resetMain();">Clear</button>
+            </div>
+        </div>
+        <div>
+            <main></main>
+        </div>
+    </body>
+</html>
+        
+        
+        
+        
+        
+<!--
+        <div>
+            <button onclick="readAll('employees')">Read all </button>
+        </div>
+        <div>
+            <div><input id="readEmpId" placeholder="employee id"></div>
+        <div>
+            <button onclick="read('employees')">Read </button>
+        </div>
+        </div>
+        <div>
+            <div><input id="removeInput" placeholder="employee id"></div>
+            <button onclick="remove('employees')">Delete data </button>
+        </div>
+        <div>
+            <div><input value="" id="empId" placeholder="Id"></div>
+            <div><input value="rob" id="empName" placeholder="Name"></div>
+            <div><input value="28" id="empAge" placeholder="Age"></div>
+            <div><input value="rm@aol.com" id="empEmail" placeholder="Email"></div>
+            <button onclick="add('employees')">Add data </button>
+        </div>
+-->
