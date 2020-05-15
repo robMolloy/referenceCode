@@ -17,9 +17,13 @@
             pre {
                 white-space: pre-wrap;
             }
+            .panel {
+                border:2px solid blue;
+                margin-bottom:20px;
+            }
         </style>
     </head>
-    <body onload="initDb();">
+    <body onload="initDb();populateDb();">
         <div id="myform">
             <div><input id="empId" placeholder="Id"></div>
             <div><input id="empName" placeholder="Name"></div>

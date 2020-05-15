@@ -98,19 +98,17 @@ async function showAllEmployees(){
 async function addEmployee(datarow=''){
     datarow = datarow=='' ? getDatarowFromMyForm() : datarow;
     
-    let tableDatarow = await getDatarow('employees',datarow.id);
-    if(tableDatarow!==undefined){
-        showInMain(`An employee already exists with that id: ${JSON.stringify(tableDatarow)}`);
-        return;
-    }
+    //~ let tableDatarow = await getDatarow('employees',datarow.id);
+    //~ if(tableDatarow!==undefined){
+        //~ showInMain(`An employee already exists with that id: ${JSON.stringify(tableDatarow)}`);
+        //~ return;
+    //~ }
     
     let addResponse = await addDatarow('employees',datarow);
-    tableDatarow = await getDatarow('employees',datarow.id);
-    let message = `
-        employee added ${addResponse ? `successfully: ${JSON.stringify(tableDatarow)}` : `unsuccessfully`}
-    `;
-    showInMain(message);
-    resetMyForm();
+    //~ tableDatarow = await getDatarow('employees',datarow.id);
+    
+    //~ appendToMain(employeePanel(datarow));
+    //~ resetMyForm();
 }
 
 
@@ -145,84 +143,3 @@ async function changeEmployee(datarow=''){
 
 
 
-
-
-
-
-
-/*
-
-
-async function changeTableDatarow(tableName,datarow){
-    let idb = await openIndexedDB();
-
-    //~ request to update something to a table
-    return new Promise((resolve, reject) => {
-        let putRequest = idb.transaction([tableName], "readwrite").objectStore(tableName).put(datarow);
-        
-        putRequest.onsuccess = putEvent => {resolve(datarow);}
-        putRequest.onerror = putEvent => {reject('failed')}
-    })
-}
-
-
-
-
-
-async function showDatarow(tableName){
-    let datarow = getDatarowFromMyForm();
-    if(datarow===undefined){document.querySelector('main').innerHTML = 'Datarow does not have an ID';return;}
-
-    let result = await getTableDatarow(tableName,datarow.id);
-    showResultInMain(result);
-}
-
-
-async function getTable(tableName){
-    let datarows = [];
-    //~ open an indexedDB connection
-    let idb = await openIndexedDB();
-    
-    return new Promise((resolve, reject) => {
-        let iterateRequest = idb.transaction([tableName]).objectStore(tableName).openCursor()
-        
-        //~ if iterateRequest succesful...
-        iterateRequest.onsuccess = iterateEvent => {
-            let cursor = iterateEvent.target.result;
-            
-            //~ check if cursor is currently iterating on a datarow - this will loop through iterations
-            if(cursor) {
-                //~ if on datarow, add datarow to datarows array and move to cursor to next datarow
-                datarows.push(cursor.value);
-                cursor.continue();
-            } else {
-                //~ once iterations complete - print datarows
-                resolve(datarows);
-            }
-        }
-    });
-}
-
-
-async function showTable(tableName){
-    let result = await getTable(tableName);
-    showResultInMain(result);
-}
-
-
-//~ function removes datarow from the table passed as argument - true even if the id does not exist in table
-
-async function showRemove(tableName){
-    let datarow = getDatarowFromMyForm();
-    if(datarow===undefined){document.querySelector('main').innerHTML = 'Datarow does not have an ID';return;}
-    
-    if(await getTableDatarow(tableName,datarow.id)===undefined){
-        showResultInMain(`datarow with id: '${datarow.id}' doesn't exist in '${tableName}'`);
-        return;
-    }
-    let result = await removeDatarow(tableName,datarow.id);
-    if(result){showResultInMain(`datarow removed successfully`);}
-}
-
-
-*/
